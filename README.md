@@ -69,7 +69,7 @@ This project implements a 2D game using Windows Forms in C#. The game features a
 
 ## Key Bindings
 
-- **Arrow Keys**: Move the player character (up, down, left, right).
-- **Spacebar**: Perform action (e.g., collect key, unlock door).
+- **Arrow Keys**: Move the player character ( left, right).
+- **Spacebar**: Perform action (Jump).
 
 
