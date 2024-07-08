@@ -72,4 +72,5 @@ This project implements a 2D game using Windows Forms in C#. The game features a
 - **Arrow Keys**: Move the player character ( left, right).
 - **Spacebar**: Perform action (Jump).
 
-
+##Run the project
+open form1.cs
