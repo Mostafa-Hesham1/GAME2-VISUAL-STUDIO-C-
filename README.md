@@ -1,88 +1,75 @@
-2D Game Project
-Overview
-This project is a 2D game implemented in C# using the Windows Forms framework. The game features various actors, including the player, zombies, keys, doors, walls, ladders, and other elements that form the game environment. The game supports multiple levels with different maps and interactions between the player and various game elements.
+# 2D Game Project
 
-Table of Contents
-Features
-Prerequisites
-Installation
-Usage
-Controls
-Code Structure
-Classes and Methods
-License
-Features
-2D game environment with multiple actors.
-Player interaction with keys, doors, walls, ladders, and other elements.
-Multiple levels with different maps.
-Animated actors, including zombies and fire.
-Basic collision detection and interaction logic.
-Bitmap-based graphics with transparency support.
-Score and time tracking.
-Prerequisites
-.NET Framework
-Visual Studio or any other C# IDE
-Installation
-Clone the repository:
+## Description
 
-sh
-Copy code
-git clone https://github.com/yourusername/your-repo-name.git
-Open the project in Visual Studio.
+This project implements a 2D game using Windows Forms in C#. The game features a player character navigating through a maze-like environment, avoiding zombies, collecting keys, and unlocking doors to progress through levels. The game includes basic collision detection, scoring, and time-tracking functionalities.
 
-Restore any NuGet packages if required.
+## Classes and Their Responsibilities
 
-Build the project.
+### Player Class
 
-Usage
-Run the project in Visual Studio by pressing F5 or selecting Debug > Start Debugging.
+- Represents the main player character.
+- **Attributes:**
+  - `Rectangle rcDst`: Destination rectangle for drawing the player.
+  - `Rectangle rcSrc`: Source rectangle for drawing the player.
+  - `List<Bitmap> imgs`: List of images representing the player's animation frames.
+  - `int iCurrFrame`: Current frame of the animation.
+  - `int health`: Player's health points.
 
-Use the keyboard controls to navigate and interact within the game environment.
+### Zombie Class
 
-Controls
-Arrow Keys: Move the player character (up, down, left, right).
-Spacebar: Perform an action (e.g., pick up a key, open a door).
-Code Structure
-Form1.cs: The main form handling the game's rendering and logic.
-CActor.cs: Class representing actors in the game, including the player, zombies, walls, and other elements.
-Bitmap Resources: Images used for various game elements, stored as .bmp and .gif files.
-sound: Sound files used for game events, stored as .wav files.
-Classes and Methods
-Form1 Class
-Properties
-gameStatus: Integer representing the current game status (e.g., 0 for ongoing, 1 for level completion).
-score: Integer representing the player's score.
-ptime: Integer tracking the elapsed playtime.
-player, zombie1, zombie2, zombie3, zombie4: Instances of the CActor class representing the player and zombie actors.
-wall: Array of CActor representing wall elements.
-door, key, ladder, ladders, fire: Instances of CActor representing doors, keys, ladders, and fire elements.
-Methods
-Form1_Paint(object sender, PaintEventArgs e): Handles the paint event to draw the game scene.
-Form1_KeyDown(object sender, KeyEventArgs e): Handles key press events for player movement and actions.
-timer1_Tick(object sender, EventArgs e): Timer event handler for updating game logic and redrawing the scene.
-DrawDubb(Graphics g): Double-buffered drawing to prevent flickering.
-DrawScene(Graphics g): Draws the entire game scene including all actors and elements.
-createground(): Creates and initializes the ground elements.
-createwall(): Creates and initializes the wall elements.
-createkey(): Creates and initializes the key elements.
-createdoor(): Creates and initializes the door elements.
-towall(): Creates and initializes the top wall elements.
-elementformap2(): Initializes elements for the second map.
-newmap1them(): Creates and initializes the elements for a new map.
-playSimpleSound(string path): Plays a sound from the given path.
-playAgain(int seconds): Resets the game or loads a new level after a specified time.
-CActor Class
-Represents an actor in the game with properties for source and destination rectangles and a list of images.
+- Represents the enemy zombies.
+- **Attributes:**
+  - `Rectangle rcDst`: Destination rectangle for drawing the zombie.
+  - `Rectangle rcSrc`: Source rectangle for drawing the zombie.
+  - `List<Bitmap> imgs`: List of images representing the zombie's animation frames.
+  - `int iCurrFrame`: Current frame of the animation.
+  - `int speed`: Movement speed of the zombie.
 
-Properties
-rcSrc: Source rectangle for drawing.
-rcDst: Destination rectangle for drawing.
-imgs: List of images representing the actor's animation frames.
-iCurrFrame: Current frame index for the animation.
-iPoints: Points assigned to the actor for scoring purposes.
-strImageFileName: Image file name for loading the actor's bitmap.
-Methods
-setCurrentFrame(int iFrame): Sets the current animation frame for the actor.
-AdvanceAnimationFrame(): Advances to the next animation frame.
-move(int dx, int dy): Moves the actor by the specified amount.
-Draw(Graphics g): Draws the actor using the provided graphics context.
+### Key Class
+
+- Represents the keys that the player collects.
+- **Attributes:**
+  - `Rectangle rcDst`: Destination rectangle for drawing the key.
+  - `Rectangle rcSrc`: Source rectangle for drawing the key.
+  - `Bitmap img`: Image representing the key.
+  - `bool collected`: Flag indicating if the key has been collected by the player.
+
+### Door Class
+
+- Represents the doors that the player unlocks with keys.
+- **Attributes:**
+  - `Rectangle rcDst`: Destination rectangle for drawing the door.
+  - `Rectangle rcSrc`: Source rectangle for drawing the door.
+  - `Bitmap img`: Image representing the door.
+  - `bool locked`: Flag indicating if the door is locked or unlocked.
+
+### Form1 Class
+
+- The main form of the game, responsible for game logic and rendering.
+- **Attributes:**
+  - `Player player`: Instance of the `Player` class representing the player character.
+  - `List<Zombie> zombies`: List of `Zombie` instances representing the enemies.
+  - `List<Key> keys`: List of `Key` instances representing the keys in the game.
+  - `List<Door> doors`: List of `Door` instances representing the doors in the game.
+  - `int score`: Player's score.
+  - `int level`: Current level of the game.
+  - `int remainingKeys`: Number of keys remaining to collect.
+  - `int gameTime`: Elapsed time since the start of the game.
+  - `Timer timer`: Timer object for game updates.
+- **Methods:**
+  - `Form1()`: Constructor, initializes game objects and sets up event handlers.
+  - `Form1_Paint(object sender, PaintEventArgs e)`: Handles the paint event to draw the game scene.
+  - `Form1_KeyDown(object sender, KeyEventArgs e)`: Handles key press events for player movement and actions.
+  - `timer_Tick(object sender, EventArgs e)`: Timer event handler for updating game logic.
+  - `InitializeLevel()`: Initializes the game objects for a new level.
+  - `CheckCollisions()`: Checks for collisions between the player, keys, doors, and zombies.
+  - `UpdateGameState()`: Updates the game state based on player actions and elapsed time.
+  - `DrawScene(Graphics g)`: Draws the game scene including the player, zombies, keys, and doors.
+
+## Key Bindings
+
+- **Arrow Keys**: Move the player character (up, down, left, right).
+- **Spacebar**: Perform action (e.g., collect key, unlock door).
+
+
