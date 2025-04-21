@@ -3,7 +3,9 @@
 ## Description
 
 This project implements a 2D game using Windows Forms in C#. The game features a player character navigating through a maze-like environment, avoiding zombies, collecting keys, and unlocking doors to progress through levels. The game includes basic collision detection, scoring, and time-tracking functionalities.
+## My Game Video
 
+[![My Game Video](https://img.youtube.com/vi/placeholder/0.jpg)](https://github.com/Mostafa-Hesham1/GAME2-VISUAL-STUDIO-C-/blob/master/my%20game2.mp4)
 ## Classes and Their Responsibilities
 
 ### Player Class
